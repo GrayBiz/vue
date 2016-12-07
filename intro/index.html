@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="https://code.getmdl.io/1.2.1/material.indigo-pink.min.css">
+<script defer src="https://code.getmdl.io/1.2.1/material.min.js"></script>
+  <title>Document</title>
+</head>
+<body>
+<div id="app">
+  <h1 v-bind:title="title">{{message}}</h1>
+  <h2>Count: {{count}}</h2>
+  <input type="text" v-model="message"  />
+  <p>
+    Visit: <a :href="url">{{cleanUrl}}</a>
+  </p>
+  <input type="text" v-model="url"  />
+  <button @click="humanize" class="mdl-button mdl-js-button mdl-button--raised">Process</button>
+  <!-- <button @click="countUp" class="mdl-button mdl-js-button mdl-button--raised">Up</button> -->
+  <!-- <button v-on:click="countDown" class="mdl-button mdl-js-button mdl-button--raised">Down</button> -->
+
+  <!-- <img :src="url" :alt="title" v-bind:title ="title"/> -->
+  <!-- <ul>
+    <li style="list-style-type: none;" v-for="todo in todos">{{todo.id}}) {{todo.text}}</li>
+  </ul> -->
+</div>
+</body>
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<script>
+  var app = new Vue({
+    el: '#app',
+    data: {
+      message: 'Hello Buddy!',
+      intro: "Welcome to the world",
+      viewed: true,
+      title: "You loaded the page on " + new Date(),
+      url: "http://vuejs.org/images/logo.png",
+      todos: [
+        {text: "learn Vue", id: 1},
+        {text: "Do more shit", id: 2},
+        {text: "All the things!", id: 3}
+      ],
+      count: 0,
+      url: "",
+      cleanUrl: ""
+    },
+    methods: {
+      countUp: function() {
+        this.count +=1;
+      },
+      countDown: function() {
+        this.count -=1;
+      },
+      humanize: function() {
+        this.cleanUrl = this.url.replace(/^https?:\/\/www./, '').replace(/\/$/, '');
+      }
+    }
+  })
+</script>
+</html>
